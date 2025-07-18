@@ -1,0 +1,226 @@
+import datetime
+import os, sys
+import subprocess
+import tkinter as tk
+from tkinter import *
+
+
+
+def run_exe():
+    root_path = input_variable.get()
+    for root, dirnames, filenames in os.walk(root_path):
+        for filename in filenames:
+            print(os.path.join(root, filename))
+
+
+window = Tk()
+
+# Create widgets
+input_variable = StringVar(window)
+input_variable_label = Label(window, text="Root Here").grid(row=1, column=0)
+entry_variable = Entry(window, textvariable=input_variable).grid(row=1, column=1)
+
+button_submit = Button(window, text="Start", command=run_exe).grid(row=2, column=1)
+
+window.mainloop(2)
+
+
+
+
+
+
+def button_clucked():
+
+
+        fname = input('Enter filename to view')
+
+        subprocess.run(["xdg-open", fname, ])
+        f = open(fname, 'r')
+        print(f.read())
+        size = os.path.getsize(fname)
+        print(size, "bytes")
+        c_time = os.path.getctime(fname)
+        dt_c = datetime.datetime.fromtimestamp(c_time)
+        print(dt_c)
+        ext = os.path.splitext(fname)[-1].lower()
+
+# Now we can simply use == to check for equality, no need for wildcards.
+        if ext == ".mp3":
+            print("is an mp3!")
+        elif ext == ".flac":
+            print("is a flac file!")
+        elif ext == ".txt":
+            print("is a text file.")
+        else:
+            print("is an unknown file format.")
+
+
+root = tk.Tk()
+
+    # Creating a button with specified options
+button = tk.Button(root,
+                       text="select file",
+                       command=button_clucked,
+                       activebackground="blue",
+                       activeforeground="white",
+                       anchor="center",
+                       bd=3,
+                       bg="lightgray",
+                       cursor="hand2",
+                       disabledforeground="gray",
+                       fg="black",
+                       font=("Arial", 12),
+                       height=2,
+                       highlightbackground="black",
+                       highlightcolor="green",
+                       highlightthickness=2,
+                       justify="center",
+                       overrelief="raised",
+                       padx=10,
+                       pady=5,
+                       width=15,
+                       wraplength=100)
+
+button.pack(padx=20, pady=20)
+
+root.mainloop(2)
+
+
+
+def would_you_like_to_change_d():
+                mvfa = input('where')
+                subprocess.call('cd', shell=True, cwd=mvfa)
+                print(os.path.join(mvfa))
+
+
+
+                # Creating a button with specified options
+button = tk.Button(root,
+                                   text="change directory",
+                                   command=would_you_like_to_change_d,
+                                   activebackground="blue",
+                                   activeforeground="white",
+                                   anchor="center",
+                                   bd=3,
+                                   bg="lightgray",
+                                   cursor="hand2",
+                                   disabledforeground="gray",
+                                   fg="black",
+                                   font=("Arial", 12),
+                                   height=2,
+                                   highlightbackground="black",
+                                   highlightcolor="green",
+                                   highlightthickness=2,
+                                   justify="center",
+                                   overrelief="raised",
+                                   padx=10,
+                                   pady=5,
+                                   width=15,
+                                   wraplength=100)
+
+button.pack(padx=20, pady=20)
+root.mainloop(2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def button_clocked():
+            foldn = input("which one")
+            foldna = input("where")
+            subprocess.run(["mv", foldn, foldna])
+
+
+
+
+
+        # Creating a button with specified options
+button = tk.Button(root,
+                           text="move file",
+                           command=button_clocked,
+                           activebackground="blue",
+                           activeforeground="white",
+                           anchor="center",
+                           bd=3,
+                           bg="lightgray",
+                           cursor="hand2",
+                           disabledforeground="gray",
+                           fg="black",
+                           font=("Arial", 12),
+                           height=2,
+                           highlightbackground="black",
+                           highlightcolor="green",
+                           highlightthickness=2,
+                           justify="center",
+                           overrelief="raised",
+                           padx=10,
+                           pady=5,
+                           width=15,
+                           wraplength=100)
+
+button.pack(padx=20, pady=20)
+
+root.mainloop(3)
+
+
+
+
+
+
+
+
+
+
+
+def button_clicked():
+                detea = input("which one")
+                subprocess.run(["ls", detea])
+                subprocess.run(["rm", "-r", detea])
+
+
+
+
+            # Creating a button with specified options
+button = tk.Button(root,
+                               text="delete file",
+                               command=button_clicked,
+                               activebackground="blue",
+                               activeforeground="white",
+                               anchor="center",
+                               bd=3,
+                               bg="lightgray",
+                               cursor="hand2",
+                               disabledforeground="gray",
+                               fg="black",
+                               font=("Arial", 12),
+                               height=2,
+                               highlightbackground="black",
+                               highlightcolor="green",
+                               highlightthickness=2,
+                               justify="center",
+                               overrelief="raised",
+                               padx=10,
+                               pady=5,
+                               width=15,
+                               wraplength=100)
+
+button.pack(padx=20, pady=20)
+
+root.mainloop()
