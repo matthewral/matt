@@ -16,6 +16,7 @@ def run_exe():
 
 window = Tk()
 
+
 # Create widgets
 input_variable = StringVar(window)
 input_variable_label = Label(window, text="Root Here").grid(row=1, column=0)
@@ -147,12 +148,37 @@ root.mainloop(2)
 
 
 def button_clocked():
-            foldn = input("which one")
-            foldna = input("where")
-            subprocess.run(["mv", foldn, foldna])
+    def run_exe():
+
+
+        subprocess.run(["mv", input_variable3.get(), input_variable4.get()])
+
+    window = Tk()
+
+    # Create widgets
+    input_variable3 = StringVar(window)
+    input_variable_label = Label(window, text="Root Here").grid(row=1, column=0)
+    entry_variable = Entry(window, textvariable=input_variable3).grid(row=1, column=1)
+
+    button_submit = Button(window, text="Start", command=run_exe).grid(row=2, column=1)
+
+    window.mainloop(1)
+
+    input_variable4 = StringVar(window)
+    input_variable_label = Label(window, text="Root Here").grid(row=1, column=0)
+    entry_variable = Entry(window, textvariable=input_variable4).grid(row=1, column=1)
+
+    button_submit = Button(window, text="Start", command=run_exe).grid(row=2, column=1)
+
+    window.mainloop(1)
+
+
+        foldn = input("which one")
+        foldna = input("where")
+        subprocess.run(["mv", foldn, foldna])
 
         # Creating a button with specified options
-button = tk.Button(root,
+    button = tk.Button(root,
                            text="move file",
                            command=button_clocked,
                            activebackground="purple",
@@ -175,11 +201,11 @@ button = tk.Button(root,
                            width=15,
                            wraplength=100)
 
-button.pack(padx=20, pady=20)
+    button.pack(padx=20, pady=20)
 
-root.mainloop(3)
+    root.mainloop(3)
 
-def button_clicked():
+    def button_clicked():
                 detea = input("which one")
                 subprocess.run(["ls", detea])
                 subprocess.run(["rm", "-r", detea])
