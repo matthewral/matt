@@ -5,12 +5,13 @@ import tkinter as tk
 from tkinter import *
 
 
-
+subprocess.run(["dir", "/"])
 def run_exe():
     root_path = input_variable.get()
     for root, dirnames, filenames in os.walk(root_path):
         for filename in filenames:
             print(os.path.join(root, filename))
+            subprocess.run(["dir",input_variable.get() ])
 
 
 window = Tk()
@@ -25,26 +26,20 @@ button_submit = Button(window, text="Start", command=run_exe).grid(row=2, column
 window.mainloop(2)
 
 
-
-
-
-
 def button_clucked():
+    def run_exe():
 
-
-        fname = input('Enter filename to view')
-
-        subprocess.run(["xdg-open", fname, ])
-        f = open(fname, 'r')
+        subprocess.run(["xdg-open", input_variable.get(), ])
+        f = open(input_variable.get(), 'r')
         print(f.read())
-        size = os.path.getsize(fname)
+        size = os.path.getsize(input_variable.get())
         print(size, "bytes")
-        c_time = os.path.getctime(fname)
+        c_time = os.path.getctime(input_variable.get())
         dt_c = datetime.datetime.fromtimestamp(c_time)
         print(dt_c)
-        ext = os.path.splitext(fname)[-1].lower()
+        ext = os.path.splitext(input_variable.get())[-1].lower()
 
-# Now we can simply use == to check for equality, no need for wildcards.
+        # Now we can simply use == to check for equality, no need for wildcards.
         if ext == ".mp3":
             print("is an mp3!")
         elif ext == ".flac":
@@ -54,6 +49,20 @@ def button_clucked():
         else:
             print("is an unknown file format.")
 
+    window = Tk()
+
+    # Create widgets
+    input_variable = StringVar(window)
+    input_variable_label = Label(window, text="Root Here").grid(row=1, column=0)
+    entry_variable = Entry(window, textvariable=input_variable).grid(row=1, column=1)
+
+    button_submit = Button(window, text="Start", command=run_exe).grid(row=2, column=1)
+
+    window.mainloop(0)
+
+
+
+
 
 root = tk.Tk()
 
@@ -61,7 +70,7 @@ root = tk.Tk()
 button = tk.Button(root,
                        text="select file",
                        command=button_clucked,
-                       activebackground="blue",
+                       activebackground="green",
                        activeforeground="white",
                        anchor="center",
                        bd=3,
@@ -88,9 +97,24 @@ root.mainloop(2)
 
 
 def would_you_like_to_change_d():
-                mvfa = input('where')
-                subprocess.call('cd', shell=True, cwd=mvfa)
-                print(os.path.join(mvfa))
+    def run_exe():
+        subprocess.run(["dir", "/"])
+        subprocess.call('cd', shell=True, cwd=input_variable2.get())
+        print(os.path.join(input_variable.get()))
+        subprocess.run(["dir", input_variable2.get()])
+
+    window = Tk()
+
+    # Create widgets
+    input_variable2 = StringVar(window)
+    input_variable_label = Label(window, text="Root Here").grid(row=1, column=0)
+    entry_variable = Entry(window, textvariable=input_variable2).grid(row=1, column=1)
+
+    button_submit = Button(window, text="Start", command=run_exe).grid(row=2, column=1)
+
+    window.mainloop()
+
+
 
 
 
@@ -122,40 +146,16 @@ button.pack(padx=20, pady=20)
 root.mainloop(2)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def button_clocked():
             foldn = input("which one")
             foldna = input("where")
             subprocess.run(["mv", foldn, foldna])
 
-
-
-
-
         # Creating a button with specified options
 button = tk.Button(root,
                            text="move file",
                            command=button_clocked,
-                           activebackground="blue",
+                           activebackground="purple",
                            activeforeground="white",
                            anchor="center",
                            bd=3,
@@ -179,16 +179,6 @@ button.pack(padx=20, pady=20)
 
 root.mainloop(3)
 
-
-
-
-
-
-
-
-
-
-
 def button_clicked():
                 detea = input("which one")
                 subprocess.run(["ls", detea])
@@ -201,8 +191,8 @@ def button_clicked():
 button = tk.Button(root,
                                text="delete file",
                                command=button_clicked,
-                               activebackground="blue",
-                               activeforeground="white",
+                               activebackground="red",
+                               activeforeground="yellow",
                                anchor="center",
                                bd=3,
                                bg="lightgray",
